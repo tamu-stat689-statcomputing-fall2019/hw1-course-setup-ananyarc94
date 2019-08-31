@@ -5,7 +5,7 @@
 # seed  - starting seed value
 generateY <- function(X, beta, sigma, seed = 5832652){
   #[ToDo] Set seed and generate Y following linear model
-  
+  Y= X%*%beta + rnorm(1,0,sigma)
   # Return Y
   return(Y)
 }
@@ -16,6 +16,8 @@ generateY <- function(X, beta, sigma, seed = 5832652){
 calculateBeta <- function(X, Y){
   # Calculate beta_LS
   
+  beta_LS = solve(crossprod(X,X),crossprod(X,Y))
+
   # Return beta
   return(beta_LS)
 }
@@ -23,6 +25,8 @@ calculateBeta <- function(X, Y){
 # Calculate MSE
 calculateMSE <- function(beta, beta_LS){
   
+  diff = beta - beta_LS
+  MSE = as.numeric(crossprod(diff))
   # Return MSE - error ||beta - beta_LS||_2^2
   return(MSE)
 }
