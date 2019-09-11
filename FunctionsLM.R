@@ -3,9 +3,11 @@
 # beta - given parameter vector
 # sigma - standard deviation of the noise
 # seed  - starting seed value
-generateY <- function(X, beta, sigma, seed = 5832652){
+generateY <- function(X, beta, sigma, seed= 5832652){
   #Set seed and generate Y following linear model
-  Y= X%*%beta + rnorm(1,0,sigma)  # generating y with white noise
+  set.seed(seed)
+  n = nrow(X)  #no. of samples
+  Y= X%*%beta + rnorm(n,0,sigma)  # generating y with white noise
   
   # Return Y
   return(Y)
